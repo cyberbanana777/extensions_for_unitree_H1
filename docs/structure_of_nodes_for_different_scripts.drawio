@@ -1,0 +1,164 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.2.15 Chrome/134.0.6998.205 Electron/35.2.1 Safari/537.36" version="26.2.15">
+  <diagram name="Страница — 1" id="kk3gI737m3lhBVqpHMOe">
+    <mxGraphModel dx="1009" dy="951" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;shape=flexArrow;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="DTBRTQO5ix-suVkUnoi9-23" target="Sv8NgRc-eZMxVdtyTUtE-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="250" y="385" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tMD8sDpOX8Gj56EuDlwz-2" value="/positions_unitree" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="Sv8NgRc-eZMxVdtyTUtE-4" vertex="1" connectable="0">
+          <mxGeometry y="-2" relative="1" as="geometry">
+            <mxPoint y="-17" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-2" value="&lt;b&gt;Сценарий 1. Телеуправление.&lt;/b&gt;&lt;div&gt;Робот двигает руками в соответствии положением копирующего утройства&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="282.5" y="273" width="440" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-3" value="Нода, которая получает целевые значения координат и выставлет их на роботе (Управляющая нода)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="390" y="335" width="140" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;shape=flexArrow;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" parent="1" source="DTBRTQO5ix-suVkUnoi9-21" target="Sv8NgRc-eZMxVdtyTUtE-8" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="275" y="671" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="293" y="644" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-7" value="&lt;b&gt;Сценарий 2. Кейс ПМЮФ.&lt;/b&gt;&lt;div&gt;Робот двигает руками по заготовленным функциям. Функции активируются/деактивируются через web-интерфейс.&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="175" y="586" width="670" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-8" value="Нода, которая получает целевые значения координат и выставлет их на роботе (Управляющая нода)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="435" y="621" width="145" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-9" value="Скрипт, поднимающий сайт" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="155" y="920" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;shape=flexArrow;" parent="1" source="Sv8NgRc-eZMxVdtyTUtE-10" target="DTBRTQO5ix-suVkUnoi9-22" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="215" y="736" />
+            </Array>
+            <mxPoint x="215" y="717" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ybs5l4l0h7v7ProbR8VP-1" value="/button_status" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="Sv8NgRc-eZMxVdtyTUtE-11" vertex="1" connectable="0">
+          <mxGeometry x="-0.0787" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-10" value="Нода, которая получает через API информацию о стоянии кнопок и публикует её" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="155" y="820" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-12" value="Нода High-level client&lt;div&gt;(Нужна для перевода в рабочее состояние)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="415" y="850" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-13" value="Нода High-level client&lt;div&gt;(Нужна для перевода в рабочее состояние)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="112.5" y="480" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;shape=flexArrow;" parent="1" source="Sv8NgRc-eZMxVdtyTUtE-15" target="Sv8NgRc-eZMxVdtyTUtE-17" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;shape=arrow;" parent="1" source="Sv8NgRc-eZMxVdtyTUtE-15" target="Sv8NgRc-eZMxVdtyTUtE-24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-15" value="Нода, которая слушает UDP-сокет и конвертирует значения в диапазон значений unitree_h1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="140" y="1062" width="155" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-16" value="&lt;b&gt;Сценарий 3. Запись функций.&lt;/b&gt;&lt;div&gt;Робот двигает руками в соответствии положением копирующего утройства&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="282.5" y="1017" width="440" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-17" value="Нода, которая получает целевые значения координат и выставлет их на роботе (Управляющая нода)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="435" y="1057" width="135" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-18" value="Нода High-level client&lt;div&gt;(Нужна для перевода в рабочее состояние)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="175" y="1250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Sv8NgRc-eZMxVdtyTUtE-24" value="Нода, которая получает целевые значения координат и записывает их в файл макроса (Записывающая нода )" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="435" y="1220" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-1" value="&lt;b&gt;Нода:&lt;/b&gt; high_level_control" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="112.5" y="540" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-4" value="&lt;b&gt;Нода:&amp;nbsp;&lt;/b&gt;&lt;div&gt;server_stand_up&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="155" y="960" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-5" value="Нода: &lt;span style=&quot;font-weight: normal;&quot;&gt;hear_server&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="155" y="890" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-6" value="&lt;b&gt;Нода:&lt;/b&gt; high_level_control" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="415" y="910" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-7" value="&lt;b&gt;Нода:&lt;/b&gt; high_level_control" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="175" y="1310" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-9" value="Сценарий &lt;span style=&quot;font-weight: normal;&quot;&gt;H1_control_by_buttons.launch.py&lt;/span&gt;" style="swimlane;whiteSpace=wrap;html=1;align=left;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="630" y="625" width="245" height="125" as="geometry">
+            <mxRectangle x="630" y="625" width="280" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-10" value="- server_stand_up&lt;div&gt;- hear_server&lt;/div&gt;&lt;div&gt;- button_analyzer_node&lt;/div&gt;&lt;div&gt;- low_level_control&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" parent="DTBRTQO5ix-suVkUnoi9-9" vertex="1">
+          <mxGeometry y="21" width="240" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-11" value="Сценарий &lt;span style=&quot;font-weight: normal;&quot;&gt;Fedor_teleop&lt;/span&gt;.&lt;span style=&quot;font-weight: normal;&quot;&gt;launch.py&lt;/span&gt;" style="swimlane;whiteSpace=wrap;html=1;align=left;fillColor=#e1d5e7;strokeColor=#9673a6;startSize=23;" parent="1" vertex="1">
+          <mxGeometry x="650" y="1057" width="245" height="65" as="geometry">
+            <mxRectangle x="630" y="625" width="280" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-12" value="- udp_listener_and_converter&lt;div&gt;- low_level_control&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" parent="DTBRTQO5ix-suVkUnoi9-11" vertex="1">
+          <mxGeometry y="25" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-15" value="&lt;b&gt;Нода:&lt;/b&gt;&amp;nbsp;&lt;div&gt;low_level_control_node&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="435" y="712" width="145" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="FYHDQe3gvc3EgfLKREPR-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="DTBRTQO5ix-suVkUnoi9-16" target="Sv8NgRc-eZMxVdtyTUtE-17" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-16" value="&lt;b&gt;Нода:&lt;/b&gt;&amp;nbsp;&lt;div&gt;low_level_control_node&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="435" y="1147" width="135" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-17" value="&lt;b&gt;Нода:&lt;/b&gt;&amp;nbsp;&lt;div&gt;low_level_control_node&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="390" y="425" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-18" value="Сценарий &lt;span style=&quot;font-weight: normal;&quot;&gt;Fedor_teleop.launch.py&lt;/span&gt;" style="swimlane;whiteSpace=wrap;html=1;align=left;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="640" y="340" width="245" height="65" as="geometry">
+            <mxRectangle x="630" y="625" width="280" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-19" value="- udp_listener_and_converter&lt;div&gt;- low_level_control&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" parent="DTBRTQO5ix-suVkUnoi9-18" vertex="1">
+          <mxGeometry y="25" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-20" value="&lt;b&gt;Нода:&lt;/b&gt;&amp;nbsp;&lt;div&gt;udp_listener_and_converter&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="140" y="1142" width="155" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-21" value="Нода, которая считывает нажатые кнопки, и в зависимости от этого запускает нужный макрос" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="137.5" y="626" width="155" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-22" value="&lt;b&gt;Нода:&lt;/b&gt;&amp;nbsp;&lt;div&gt;button_analyzer_node&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="137.5" y="711" width="155" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-23" value="Нода, которая слушает UDP-сокет и конвертирует значения в диапазон значений unitree_h1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="95" y="340" width="155" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="DTBRTQO5ix-suVkUnoi9-24" value="&lt;b&gt;Нода:&lt;/b&gt;&amp;nbsp;&lt;div&gt;udp_listener_and_converter&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="95" y="420" width="155" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="67NJbs2nltrbgMd6JRUL-1" value="/positions_unitree" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="355" y="626" as="geometry" />
+        </mxCell>
+        <mxCell id="67NJbs2nltrbgMd6JRUL-3" value="/positions_unitree" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="355" y="1089.5" as="geometry" />
+        </mxCell>
+        <mxCell id="67NJbs2nltrbgMd6JRUL-4" value="/positions_unitree" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="365" y="1177" as="geometry" />
+        </mxCell>
+        <mxCell id="67NJbs2nltrbgMd6JRUL-5" value="&lt;b&gt;Нода:&lt;/b&gt;&amp;nbsp;&lt;div&gt;macros_writer_node&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="435" y="1320" width="120" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
