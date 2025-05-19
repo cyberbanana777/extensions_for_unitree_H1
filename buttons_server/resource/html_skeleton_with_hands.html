@@ -105,6 +105,16 @@
             width: 100%;
         }
 
+        .vertical-button-row {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            /* Увеличиваем расстояние между кнопками */
+            margin-bottom: 8px;
+            justify-content: center;
+            width: 100%;
+        }
+
         @media (orientation: landscape) {
             .communication-section .button-row {
                 display: grid;
@@ -113,15 +123,10 @@
                 gap: 6px;
             }
 
-            .documents-section .button-row {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 1fr 1fr;
-                gap: 6px;
-            }
-
-            .documents-section .button-row button:last-child {
-                grid-column: span 2;
+            .documents-section .vertical-button-row {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
             }
         }
 
@@ -150,13 +155,13 @@
             .robot-btn {
                 min-width: 60px;
                 height: 60px;
-                font-size: 0.8rem;
+               font-size: 0.8rem;
                 padding: 3px;
                 margin: 0;
             }
 
-            .documents-section .button-row button:last-child {
-                height: 70px;
+            .documents-section .robot-btn {
+                width: 100%;
             }
 
             .btn-label {
@@ -250,7 +255,11 @@
             color: #666666;
             margin-top: 4px;
             margin-bottom: 0;
-            
+        }
+
+        .spacer {
+            height: 30px;
+            /* Добавляем пространство между кнопкой сброса и документами */
         }
     </style>
 </head>
@@ -258,65 +267,33 @@
 <body>
     <div class="container">
         <div class="left-panel">
-            <div class="section communication-section">
-                <div class="section-title">Коммуникация</div>
-                <div class="button-row">
-                    <button class="robot-btn communication" id="wave" onclick="sendCommand('wave')">
-                        Помахать
-                        <span class="btn-label">рукой</span>
-                    </button>
-                    <button class="robot-btn communication" id="photo" onclick="sendCommand('photo')">
-                        Фото
-                        <span class="btn-label">Пригласить</span>
-                    </button>
-                    <button class="robot-btn communication" id="attention" onclick="sendCommand('attention')">
-                        Обратите
-                        <span class="btn-label">Внимание</span>
-                    </button>
-                    <button class="robot-btn communication" id="selfie" onclick="sendCommand('selfie')">
-                        Сэлфи
-                        <span class="btn-label">Улыбнитесь</span>
-                    </button>
-                </div>
-            </div>
-
             <div class="section handshake-section">
-                <div class="section-title">Рукопожатие</div>
+                <div class="section-title">Сброс в ноль</div>
                 <div class="button-row">
-                    <button class="robot-btn handshake" onclick="sendCommand('1_offer_hand')">
-                        1. Подать
-                        <span class="btn-label">Руку</span>
-                    </button>
-                    <button class="robot-btn handshake" onclick="sendCommand('2_shake_hand')">
-                        2. Пожать
-                        <span class="btn-label">Руку</span>
+                    <button class="robot-btn handshake" onclick="sendCommand('1_offer_hand', true)">
+                        Сброс
                     </button>
                 </div>
-            </div>
-        </div>
 
-        <div class="right-panel">
-            <div class="section documents-section">
+                <!-- Добавляем пространство между кнопками -->
+                <div class="spacer"></div>
+
                 <div class="section-title">Документы</div>
-                <div class="button-row">
-                    <button class="robot-btn documents" onclick="sendCommand('1_offer_docs')">
-                        1. Принять
+                <div class="vertical-button-row">
+                    <button class="robot-btn documents" onclick="sendCommand('1_offer_docs', false)">
+                        1/7. Принять/Отдать
                         <span class="btn-label">Документы</span>
                     </button>
-                    <button class="robot-btn documents" onclick="sendCommand('2_grip_docs')">
-                        2. Взять
+                    <button class="robot-btn documents" onclick="sendCommand('2_grip_docs', false)">
+                        2/6. Взять/Опустить
                         <span class="btn-label">Документы</span>
                     </button>
-                    <button class="robot-btn documents" onclick="sendCommand('3_hold_docs')">
-                        3. Держать
+                    <button class="robot-btn documents" onclick="sendCommand('3_hold_docs', false)">
+                        3/5. Держать низко
                         <span class="btn-label">У тела</span>
                     </button>
-                    <button class="robot-btn documents" onclick="sendCommand('4_give_docs')">
-                        4. Отдать
-                        <span class="btn-label">Документы</span>
-                    </button>
-                    <button class="robot-btn documents" onclick="sendCommand('5_release_docs')">
-                        5. Отпустить
+                    <button class="robot-btn documents" onclick="sendCommand('4_give_docs', false)">
+                        4. Держать высоко
                         <span class="btn-label">Документы</span>
                     </button>
                 </div>
@@ -357,33 +334,42 @@
             '5_release_docs': rgbaToBackground('#00a2ff', 0.1)
         };
 
-        function sendCommand(command) {
-            console.log("Отправка команды:", command);
-
-            const statusTextElement = document.getElementById('statusText');
-            const lastChangeElement = document.getElementById('lastChange');
-
-            // Проверяем, является ли текущая кнопка активной
-            const isSameButton = activeButton && activeButton.onclick.toString().includes(`'${command}'`);
-
-            if (isSameButton) {
-                // Если нажата активная кнопка - деактивируем ее
+        function resetAllButtons() {
+            if (activeButton) {
                 activeButton.classList.remove('active');
                 activeButton.classList.add('reset');
                 setTimeout(() => {
                     activeButton.classList.remove('reset');
                 }, 200);
                 activeButton = null;
-                document.body.style.backgroundColor = '#f5efe8';
-                statusTextElement.textContent = 'Готов к работе';
-                lastChangeElement.textContent = 'Ожидание команды';
-                
+            }
+            document.body.style.backgroundColor = '#f5efe8';
+            document.getElementById('statusText').textContent = 'Готов к работе';
+            document.getElementById('lastChange').textContent = 'Ожидание команды';
+        }
+
+        function sendCommand(command, isResetButton) {
+            console.log("Отправка команды:", command);
+
+            const statusTextElement = document.getElementById('statusText');
+            const lastChangeElement = document.getElementById('lastChange');
+
+            // Если это кнопка сброса - сбрасываем все
+            if (isResetButton) {
+                resetAllButtons();
                 // Отправка команды деактивации на сервер
-                fetch(`/activate?btn=${command}&active=false`)
+                fetch(`/activate?btn=none&active=false`)
                     .then(response => response.json())
                     .then(data => console.log("Ответ сервера:", data))
                     .catch(error => console.error("Ошибка:", error));
-                
+                return;
+            }
+
+            // Проверяем, является ли текущая кнопка активной
+            const isSameButton = activeButton && activeButton.onclick.toString().includes(`'${command}'`);
+
+            // Для кнопок документов игнорируем повторное нажатие
+            if (isSameButton) {
                 return;
             }
 
@@ -431,7 +417,7 @@
 
             statusTextElement.textContent = statusDescriptions[command] || 'Команда выполнена';
             lastChangeElement.textContent = 'Время: ' + new Date().toLocaleTimeString();
-            
+
             // Отправка команды активации на сервер
             fetch(`/activate?btn=${command}&active=true`)
                 .then(response => response.json())
@@ -441,4 +427,4 @@
     </script>
 </body>
 
-</html>
+</html> 

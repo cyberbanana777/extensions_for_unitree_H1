@@ -6,9 +6,9 @@ def main():
     package_share_dir = get_package_share_directory('hands_init')
 
     executable_path = os.path.join(package_share_dir, 'inspire_hand')
-    cmd = ['sudo', '-S', executable_path, '-s', '/dev/null']
+    cmd = ['sudo', '-S', executable_path, '-s', '/dev/ttyUSB0']
 
-    sudo_password = "banana\n"  # пароль с переводом строки
+    sudo_password = "Unitree0408\n"  # пароль с переводом строки
 
     try:
         with subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,

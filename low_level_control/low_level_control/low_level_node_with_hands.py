@@ -48,7 +48,7 @@ import json
 # Частота в гц для ноды
 FREQUENCY = 333.33
 # коэффициэнт на который умножается control_dt (сек), который устанавливает максимальную дельту поворота мотора
-MAX_JOINT_VELOCITY = 3.0
+MAX_JOINT_VELOCITY = 0.5
 
 JOINT_INDEX_H1 = {
     'right_hip_roll_joint': 0,
@@ -104,11 +104,11 @@ LIMITS_OF_JOINTS_UNITREE_H1 = {
     12: [-1.9, 0.5],  # right_shoulder_pitch_joint M
     13: [-2.2, 0.0],  # right_shoulder_roll_joint M
     14: [-1.5, 1.3],  # right_shoulder_yaw_joint M
-    15: [-0.5, 1.65],  # right_elbow_joint M
+    15: [-1.1, 1.65],  # right_elbow_joint M
     16: [-1.9, 0.5],  # left_shoulder_pitch_joint M
     17: [0.0, 2.2],  # left_shoulder_roll_joint M
     18: [-1.3, 1.5],  # left_shoulder_yaw_joint M
-    19: [-0.5, 1.65]  # left_elbow_joint M
+    19: [-1.1, 1.65]  # left_elbow_joint M
 }
 
 LIMITS_OF_JOINTS_UNITREE_HANDS = {
@@ -141,7 +141,8 @@ class LowLevelControlNode(Node):
             JOINT_INDEX_H1['left_shoulder_pitch_joint'],
             JOINT_INDEX_H1['left_shoulder_roll_joint'],
             JOINT_INDEX_H1['left_shoulder_yaw_joint'],
-            JOINT_INDEX_H1['left_elbow_joint']
+            JOINT_INDEX_H1['left_elbow_joint'],
+            JOINT_INDEX_H1['torso_joint']
         ]
 
         self.active_joints_hands = [
@@ -292,7 +293,7 @@ class LowLevelControlNode(Node):
 
         self.control_dt = 1 / FREQUENCY
         # (MAX_JOINT_VELOCITY * self.control_dt)/10
-        self.max_joint_delta_hands = 0.001
+        self.max_joint_delta_hands = 0.05
 
         # показывает насколько робот смещается в соторону координат с arm_sdk топика
         self.impact = 0.0
@@ -386,11 +387,14 @@ class LowLevelControlNode(Node):
                         hands_pose[num - 20] = value
 
             for i in self.active_joints_H1:
-                self.target_pos_H1[i] = np.clip(
-                    H1_pose[i],
-                    LIMITS_OF_JOINTS_UNITREE_H1[i][0],
-                    LIMITS_OF_JOINTS_UNITREE_H1[i][1]
-                )
+                if i == JOINT_INDEX_H1['torso_joint']:
+                    self.target_pos_H1[i] = 0.0
+                else:
+                    self.target_pos_H1[i] = np.clip(
+                        H1_pose[i],
+                        LIMITS_OF_JOINTS_UNITREE_H1[i][0],
+                        LIMITS_OF_JOINTS_UNITREE_H1[i][1]
+                    )
 
             for i in self.active_joints_hands:
                 self.get_logger().info(f'hands_pose = {hands_pose}')
@@ -414,16 +418,29 @@ class LowLevelControlNode(Node):
             self.current_jpos_hands[i] = msg.states[i].q
 
     def timer_callback_arm_sdk(self):
+        if self.impact == 0.0:
+            for i in self.active_joints_hands:
+                self.cmd_msg_hands.cmds[i].q = 1.0
 
-        if self.timer_call_count <= 5 or self.impact == 0.0:
+                self.publisher_cmd.publish(self.cmd_msg_hands)
+
+        if self.timer_call_count <= 10 or self.impact == 0.0:
             self.current_jpos_des_H1 = self.current_jpos_H1.copy()
             self.get_logger().info(
                 f'Обновление current_jpos_des_H1 = {self.current_jpos_des_H1}')
             self.current_jpos_des_hands = self.current_jpos_hands.copy()
             self.get_logger().info(
                 f'Обновление current_jpos_des_hands = {self.current_jpos_des_hands}')
-
+            
+            if self.timer_call_count <= 5:
+                for i in self.active_joints_hands:
+                    self.cmd_msg_hands.cmds[i].q = 1.0
         else:
+            # if 4000 >= self.timer_call_count > 5:
+            #     self.max_joint_delta_H1 = self.max_joint_delta_H1/2
+            # else:
+            #     self.max_joint_delta_H1 = MAX_JOINT_VELOCITY * self.control_dt
+            
             # Установка значений для H1
             self.cmd_msg_H1.motor_cmd[JOINT_INDEX_H1['NOT USED']
                                       ].q = self.impact
@@ -495,11 +512,11 @@ class LowLevelControlNode(Node):
             self.current_jpos_des_hands[i] += clamped_delta_hands
             self.get_logger().info(f'current_jpos_des_hands = {str(self.current_jpos_des_hands)}')
 
-        for i in self.active_joints_hands:
-            self.cmd_msg_hands.cmds[i].q = self.current_jpos_des_hands[i]
+            for i in self.active_joints_hands:
+                self.cmd_msg_hands.cmds[i].q = 1.0
 
-            self.publisher_cmd.publish(self.cmd_msg_hands)
-            time.sleep(self.control_dt)
+                self.publisher_cmd.publish(self.cmd_msg_hands)
+                time.sleep(self.control_dt)
 
 
 def determine_coeff_and_mode(index_of_joint_of_unitree_h1: int) -> tuple:

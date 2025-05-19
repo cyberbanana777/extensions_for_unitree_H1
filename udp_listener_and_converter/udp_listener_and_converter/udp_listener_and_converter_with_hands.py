@@ -36,8 +36,7 @@ from std_msgs.msg import String
 from rclpy.node import Node
 
 
-# HOST = '192.168.123.162'
-HOST = '192.168.211.129'
+HOST = '192.168.123.162'
 
 
 
@@ -59,8 +58,8 @@ TRANSLATER_FOR_JOINTS_FROM_FEDOR_TO_UNITREE_H1 = {
     8: 26,  # L.Finger.Little
     9: 28,  # L.Finger.Middle
     10: 27,  # L.Finger.Ring
-    11: 31,  # L.Finger.Thumbs
-    12: 30,  # L.Finger.Thumb
+    11: 31,  # L.Finger.Thumb
+    12: 30,  # L.Finger.Thumbs
     13: 12,  # R.ShoulderF -> right_shoulder_roll_joint
     14: 13,  # R.ShoulderS -> right_shoulder_pitch_joint
     15: 14,  # R.ElbowR -> right_shoulder_yaw_joint
@@ -72,8 +71,8 @@ TRANSLATER_FOR_JOINTS_FROM_FEDOR_TO_UNITREE_H1 = {
     21: 20,  # R.Finger.Little
     22: 22,  # R.Finger.Middle
     23: 21,  # R.Finger.Ring
-    24: 24,  # R.Finger.Thumb
-    25: 25  # R.Finger.Thumbs
+    24: 25,  # R.Finger.Thumbs
+    25: 24   # R.Finger.Thumb 
 }
 
 LIMITS_OF_JOINTS_UNITREE_H1 = {
@@ -121,15 +120,13 @@ LIMITS_OF_JOINTS_FEDOR = {
     2: [-9.0, 9.0],  # L_ElbowR        [-9.0, 9.0] + против часовой совпадают
     3: [-12.0, 0, 0],  # L_Elbow                 [0, -12] + вниз совпадают
     4: [-3.820199, 6.866401],  # L_WristR
-    5: [-7.0, 2.0022],  # L_WristS
     6: [-2.501599, 3.0],  # L_WristF
-    7: [-11.0, 0.0],  # L_Finger_Index       [0, -11] -согнут +разогнут
-    9: [-11.0, 0.0],   # L_Finger_Middle      [0, -11]
-    8: [-11.0, 0.0],   # L_Finger_Little      [0, -11]
-    10: [-11.0, 0.0],   # L_Finger_Ring       [0, -11]
+    7: [-11.0, -1.5],  # L_Finger_Index       [0, -11] -согнут +разогнут
+    9: [-11.0, -1.5],  # L_Finger_Middle      [0, -11]
+    8: [-11.0, -1.5],  # L_Finger_Little      [0, -11]
+    10: [-11.0, -1.5],   # L_Finger_Ring       [0, -11]
     11: [-3.0, 9.0],  # L_Finger_ThumbS     [-3, 9] -сжать, +разжать поворот
-    12: [11.0, 0.0],  # L_inger_Thumb       [0, 11] сгибание
-
+    12: [11.0, 1.5],  # L_inger_Thumb       [0, 11] сгибание
     13: [-12.0, 4.0],  # R_ShoulderF      [4.0, -12] + назад совпадают
     14: [-12.0, 0.0],  # R_ShoulderS        [0, -12] + вниз к телу совпадают
     15: [-9.0, 9.0],  # R_ElbowR            [-9.0, 9.0] + против часовой совпадают
@@ -137,12 +134,12 @@ LIMITS_OF_JOINTS_FEDOR = {
     17: [-11.0, 11.0],  # R_WristR
     18: [-2.0, 7.0],  # R_WristS
     19: [-1.734846, 3.000598],  # R_WristF
-    20: [11.0, 0.0],   # R_Finger_Index      [0, 11] +согнут 0 разогнут
-    21: [11.0, 0.0],   # R_Finger_Little     [0, 11] [0.595, 11]
-    22: [11.0, 0.0],   # R_Finger_Middle     [0, 11] [0.0749, 11]
-    23: [11.0, 0.0],   # R_Finger_Ring       [0, 11]
-    24: [3.0, 9.0],  # R_Finger_ThumbS     [-9, 3] [-9, 1.173] +сжать -разжать
-    25: [1.0, 11.0]  # R_Finger_Thumb       [0, 11] [-0.034, 11]
+    20: [11.0, 1.5],   # R_Finger_Index      [0, 11] +согнут 0 разогнут
+    21: [11.0, 1.5],   # R_Finger_Little     [0, 11] [0.595, 11]
+    22: [11.0, 1.5],   # R_Finger_Middle     [0, 11] [0.0749, 11]
+    23: [11.0, 1.5],   # R_Finger_Ring       [0, 11]
+    24: [3.0, -9.0],  # R_Finger_ThumbS     [-9, 3] [-9, 1.173] +сжать -разжать
+    25: [-11.0, -1.5],  # R_Finger_Thumb       [0, 11] [-0.034, 11]
 }
 
 
@@ -176,8 +173,10 @@ def convert_to_unitree_h1(data: list) -> dict:
                 (limits_of_this_joint_from_fedor[0] is not None)
                 and
                     (limits_of_this_joint_from_fedor[1] is not None)):
+                a_fedor = limits_of_this_joint_from_fedor[0]
+                b_febor = limits_of_this_joint_from_fedor[1]
                 output_target = map_range(
-                    input_target,
+                    np.clip(input_target, min(a_fedor, b_febor), max(a_fedor, b_febor)),
                     limits_of_this_joint_from_fedor[0],
                     limits_of_this_joint_from_fedor[1],
                     limits_of_this_joint_from_unitree_h1[0],
@@ -186,6 +185,7 @@ def convert_to_unitree_h1(data: list) -> dict:
                 output_target = input_target
 
             output_targets[index_in_unitree_h1] = round(output_target, 2)
+            
 
     return output_targets
 
@@ -224,9 +224,13 @@ class UdpListenerAndConverterNode(Node):
             return
 
         # Convert the data to the format of unitree_h1
-        self.last_data = json.dumps(convert_to_unitree_h1(self.formated_type))
+        convert_data = convert_to_unitree_h1(self.formated_type)
+        convert_data[28] = convert_data[27]
+
+        self.last_data = json.dumps(convert_data)
         self.msg.data = self.last_data + '$' + str(self.impact)
         self.get_logger().info(f'Impact = {round(self.impact, 3)}')
+        self.get_logger().info(f'data = {(self.last_data)}')
         self.publisher.publish(self.msg)
 
     def return_control(self):

@@ -237,11 +237,14 @@ class LowLevelControlNode(Node):
             self.get_logger().info(f'data = {pose}')
             self.get_logger().info(f'impact = {impact}')
             for i in self.active_joints:
-                self.target_pos[i] = np.clip(
-                    pose[str(i)],
-                    LIMITS_OF_JOINTS_UNITREE_H1[i][0],
-                    LIMITS_OF_JOINTS_UNITREE_H1[i][1]
-                )
+                if i == JOINT_INDEX['torso_joint']:
+                    self.target_pos[i] = 0.0
+                else:
+                    self.target_pos[i] = np.clip(
+                        pose[str(i)],
+                        LIMITS_OF_JOINTS_UNITREE_H1[i][0],
+                        LIMITS_OF_JOINTS_UNITREE_H1[i][1]
+                    )
         except Exception as e:
             self.get_logger().error(e)
 
